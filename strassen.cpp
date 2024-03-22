@@ -135,17 +135,17 @@ vector<vector<int>> strassen(const vector<vector<int>>& X, const vector<vector<i
     vector<vector<int>> C22 = addMatrices(subtractMatrices(P1, P3), addMatrices(P5, P7));
 
     // Combine into result matrix
-    vector<vector<int>> C(newSize, vector<int>(newSize));
+    vector<vector<int>> Z(newSize, vector<int>(newSize));
     for (int i = 0; i < halfSize; i++) {
         for (int j = 0; j < halfSize; j++) {
-            C[i][j] = C11[i][j];
-            C[i][j + halfSize] = C12[i][j];
-            C[i + halfSize][j] = C21[i][j];
-            C[i + halfSize][j + halfSize] = C22[i][j];
+            Z[i][j] = C11[i][j];
+            Z[i][j + halfSize] = C12[i][j];
+            Z[i + halfSize][j] = C21[i][j];
+            Z[i + halfSize][j + halfSize] = C22[i][j];
         }
     }
     // Remove padding from output
-    return removePadding(C, origSize);
+    return removePadding(Z, origSize);
 }
 
 
